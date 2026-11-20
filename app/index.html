@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Maker — multi-panel cover art studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>Vice Cover Maker</h1>
+      <p>Your photos, turned into a bold multi-panel poster. Everything runs
+      on your machine — photos are never uploaded.</p>
+    </header>
+
+    <fieldset>
+      <legend>1 · Photos</legend>
+      <label class="file-btn">Add a photo
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <p class="hint" id="tray-status">No photos yet — try a sample below.</p>
+      <div class="tray" id="tray"></div>
+      <div class="row">
+        <button id="sample-pier" type="button">Sample: pier</button>
+        <button id="sample-boulevard" type="button">Sample: boulevard</button>
+      </div>
+      <label>Photo for the selected panel
+        <select id="panel-photo"></select>
+      </label>
+      <button id="apply-all" type="button">Use this photo in every panel</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout &amp; grade</legend>
+      <label>Layout
+        <select id="layout">
+          <option value="hero">Hero + 3 panels</option>
+          <option value="grid">Grid of 4</option>
+          <option value="strip">Strip of 3</option>
+          <option value="bleed">Full-bleed photo</option>
+        </select>
+      </label>
+      <div class="swatches" id="grades" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="grade-btn active" aria-pressed="true">Sunset</button>
+        <button type="button" data-grade="neon" class="grade-btn" aria-pressed="false">Neon night</button>
+        <button type="button" data-grade="gold" class="grade-btn" aria-pressed="false">Golden hour</button>
+        <button type="button" data-grade="noir" class="grade-btn" aria-pressed="false">Noir</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Selected panel</legend>
+      <p class="hint">Click a panel on the cover to select it, then drag it to
+      reposition the photo, or scroll over it to zoom.</p>
+      <label>Zoom <span id="zoom-val">1.00×</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <label>Pan left / right <span id="panx-val">0</span>
+        <input id="panx" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label>Pan up / down <span id="pany-val">0</span>
+        <input id="pany" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <button id="reset-panel" type="button">Reset this panel</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Caption</legend>
+      <label>Title
+        <input id="title" type="text" maxlength="30" value="Sunset Heist">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="48" value="Neon nights · 2026">
+      </label>
+      <label class="check"><input id="show-caption" type="checkbox" checked> Show caption on the cover</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Export</legend>
+      <label>Size
+        <select id="export-size">
+          <option value="1080x1080">Square — 1080 × 1080</option>
+          <option value="1080x1350">Portrait — 1080 × 1350</option>
+          <option value="1920x1080">Wide — 1920 × 1080</option>
+        </select>
+      </label>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+    <p class="hint">Preview — click a panel to select it.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
